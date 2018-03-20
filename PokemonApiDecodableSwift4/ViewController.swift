@@ -19,15 +19,15 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getPokemonData()
-
+        getPokemonData {
+            print("successful")
+        }
     }
 
-    func getPokemonData() {
+    func getPokemonData(completion: @escaping()->()) {
         
         // make api call
         let apiString = "http://pokeapi.co/api/v2/pokemon/"
-        
         guard let apiURL = URL(string: apiString) else { print("url conversion failed"); return }
         
         URLSession.shared.dataTask(with: apiURL) { (data, response, error) in
@@ -35,21 +35,18 @@ class ViewController: UIViewController {
             
             do {
                 self.pokemonArray = try JSONDecoder().decode([Pokemon].self, from: data)
-                self.printPokemonArray()
+                // print pokemon array
+                for item in self.pokemonArray {
+                    print(item.name as String!, item.url as String!)
+                }
+                DispatchQueue.main.async {
 
+                    completion()
+                }
             } catch {
                 print("error getting Pokemon data objects")
             }
         }.resume()
-        DispatchQueue.main.async() {
-            self.printPokemonArray()
-        }
-    }
-    
-    func printPokemonArray() {
-        for item in pokemonArray {
-            print(item.name as String!, item.url as String!)
-        }
     }
 }
 
