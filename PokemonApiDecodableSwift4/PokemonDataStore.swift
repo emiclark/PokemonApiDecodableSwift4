@@ -1,21 +1,16 @@
 //
-//  ViewController.swift
+//  PokemonDataStore.swift
 //  PokemonApiDecodableSwift4
 //
 //  Created by Emiko Clark on 3/19/18.
 //  Copyright © 2018 Emiko Clark. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
-
-    func getPokemonData() {
+class PokemonDataStore {
+    
+    func getPokemonData(completion: @escaping([String:Any]) ->()) {
         
         // make api call
         let apiString = "http://pokeapi.co/api/v2/pokemon/"
@@ -26,14 +21,9 @@ class ViewController: UIViewController {
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard let data = data else {print("data nil"); return }
             
-            do {
-                let resultsArray = try JSONDecoder().decode([PokemonArr].self, from: data)
-            } catch {
-                print("error getting Pokemon data objects")
-            }
         }.resume()
+        completion(json)
+        
     }
     
-
 }
-
