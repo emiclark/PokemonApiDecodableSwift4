@@ -9,9 +9,9 @@
 import UIKit
 
 class MainJSON: Decodable {
-//    var results: ResultsJSON?
     var results: [Pokemon]?
     var next: String?
+    var previous: String?
 }
 
 struct Pokemon: Decodable {
@@ -41,27 +41,72 @@ class ViewController: UIViewController {
             
             do {
                 let mainJson = try JSONDecoder().decode(MainJSON.self, from: data)
-                let resultsArr = mainJson.results
-                
-                print("next call string: \(mainJson.next ?? "no next page")")
-                
-                // print pokemon array
-                for item in resultsArr! {
-                    print(item.name as String!, item.url as String!)
-                }
-                
-                DispatchQueue.main.async {
+                if let  pokemonArr = mainJson.results {
+                    
+                    print("previous: \(mainJson.previous ?? "no previous page")\nnext: \(mainJson.next ?? "no next page")\n")
+                    
+                    self.pokemonArray.append(contentsOf: pokemonArr)
+                    
+                    // print pokemon array
+                    for item in self.pokemonArray {
+                        print(item.name as String!, item.url as String!)
+                    }
+                    var count = 1
+                    while mainJson.next != nil && count < 3 {
+                        self.getMorePokemonData(urlString: mainJson.next!, completion: {
+                            print("get more data: \(count)")
+                        })
+                        count += 1
+                    }
 
-                    completion()
+                    DispatchQueue.main.async {            
+                        completion()
+                    }
                 }
             } catch {
                 print("error getting Pokemon data objects")
             }
         }.resume()
     }
+    
+    func getMorePokemonData(urlString: String, completion: @escaping()->()) {
+        
+        // make api call
+        let apiString = urlString
+        guard let apiURL = URL(string: apiString) else { print("url conversion failed"); return }
+        
+        URLSession.shared.dataTask(with: apiURL) { (data, response, error) in
+            guard let data = data else {print("data nil"); return }
+            
+            do {
+                let mainJson = try JSONDecoder().decode(MainJSON.self, from: data)
+                if let  pokemonArr = mainJson.results {
+                    
+                    print("previous: \(mainJson.previous ?? "no previous page")\nnext: \(mainJson.next ?? "no next page")\n")
+                    
+                    self.pokemonArray.append(contentsOf: pokemonArr)
+                    
+                    // print pokemon array
+                    for item in self.pokemonArray {
+                        print(item.name as String!, item.url as String!)
+                    }
+                    
+                    
+                    
+                    DispatchQueue.main.async {
+                        
+                        completion()
+                    }
+                }
+            } catch {
+                print("error getting Pokemon data objects")
+            }
+            }.resume()
+    }
+    
 }
 
-// json
+// json sample
 //{
 //    "count": 949,
 //    "previous": null,
