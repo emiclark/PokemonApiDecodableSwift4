@@ -16,6 +16,7 @@
 		008B74522069D19B00DC5E8E /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008B74512069D19B00DC5E8E /* TableViewController.swift */; };
 		008B74542069D26400DC5E8E /* PokemonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008B74532069D26400DC5E8E /* PokemonTableViewCell.swift */; };
 		008B74582069D49800DC5E8E /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008B74572069D49800DC5E8E /* ApiClient.swift */; };
+		008B745A2069E96500DC5E8E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008B74592069E96500DC5E8E /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		008B74512069D19B00DC5E8E /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		008B74532069D26400DC5E8E /* PokemonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTableViewCell.swift; sourceTree = "<group>"; };
 		008B74572069D49800DC5E8E /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		008B74592069E96500DC5E8E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = PokemonApiDecodableSwift4/Constants.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			children = (
 				0026F68020606CA9002D268F /* AppDelegate.swift */,
 				0026F68420606CA9002D268F /* Main.storyboard */,
+				008B74592069E96500DC5E8E /* Constants.swift */,
 				008B74572069D49800DC5E8E /* ApiClient.swift */,
 				008B74562069D42D00DC5E8E /* Model */,
 				008B74552069D42000DC5E8E /* Controller */,
@@ -168,6 +171,7 @@
 				008B74522069D19B00DC5E8E /* TableViewController.swift in Sources */,
 				0026F68120606CA9002D268F /* AppDelegate.swift in Sources */,
 				008B74542069D26400DC5E8E /* PokemonTableViewCell.swift in Sources */,
+				008B745A2069E96500DC5E8E /* Constants.swift in Sources */,
 				008B74502069D08600DC5E8E /* Pokemon.swift in Sources */,
 				008B74582069D49800DC5E8E /* ApiClient.swift in Sources */,
 			);

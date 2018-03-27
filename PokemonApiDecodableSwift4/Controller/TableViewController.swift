@@ -15,6 +15,20 @@ class TableViewController: UITableViewController {
     // MARK:- View Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        do {
+            try ApiClient.getPokemonData(urlString: Constants.initialURL, completion: { (pokemonArr) in
+                DispatchQueue.main.async {
+                    print(self.pokemonArray)
+                    self.pokemonArray.append(contentsOf: pokemonArr)
+                    self.tableView.reloadData()
+                }
+            })
+        } catch let error {
+            print("getting data failed-\(error.localizedDescription)")
+        }
+        
+        self.tableView.delegate = self
     }
 
     // MARK: - Table view data source
@@ -30,7 +44,7 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PokemonTableViewCell
         
-        cell.title.text = pokemonArray[indexPath.row].name
+        cell.title.text = pokemonArray[indexPath.row].name 
         cell.imageUrlString.text = pokemonArray[indexPath.row].url
 //        cell.pokemonImage?.image = pokemonArray[indexPath.row].url
         return cell
