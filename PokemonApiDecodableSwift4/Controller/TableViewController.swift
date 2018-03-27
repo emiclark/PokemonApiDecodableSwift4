@@ -46,7 +46,16 @@ class TableViewController: UITableViewController {
         
         cell.title.text = pokemonArray[indexPath.row].name 
         cell.imageUrlString.text = pokemonArray[indexPath.row].url
-//        cell.pokemonImage?.image = pokemonArray[indexPath.row].url
+        
+        let urlString =  pokemonArray[indexPath.row].url
+        
+        do {
+            try ApiClient.downloadImages(urlString: urlString!, completion: { (pokeImage) in
+                cell.pokemonImage.image = pokeImage
+            })
+        } catch let error {
+            print("image conversion failed-\(error.localizedDescription)")
+        }
         return cell
     }
 

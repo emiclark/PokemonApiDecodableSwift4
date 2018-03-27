@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class ApiClient {
     
@@ -31,6 +32,16 @@ class ApiClient {
             } catch {
                 print("error getting Pokemon data objects")
             }
+        }.resume()
+    }
+    
+    static func downloadImages(urlString: String, completion: @escaping(UIImage)->()) throws {
+        guard let url = URL(string: urlString) else { print("urlstring is nil"); return }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let data = data else { print("data is nil"); return }
+            let pokeImage = try UIImage(data: data)
+            completion()
         }.resume()
     }
 }
