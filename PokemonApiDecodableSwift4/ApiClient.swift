@@ -30,27 +30,19 @@ class ApiClient {
                     completion(pokemonArr)
                 }
             } catch {
-                print("error getting Pokemon data objects")
+                print("getPokemonData() - error getting Pokemon data objects")
             }
         }.resume()
     }
     
-    static func downloadImage(urlString: String, completion: @escaping(Data)->()) throws {
+    static func downloadImage(urlString: String, completion: @escaping(Data)->()) {
         let apiString = urlString
+        print("downloadImage() - \(apiString)")
         guard let url = URL(string: apiString) else { print("Conversion to url failed"); return }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data else { print("data is nil"); return }
-
             completion(data)
-
-//            do {
-//                let pokeImage = try UIImage(data: data) {
-//                completion(pokeImage)
-//            } catch let error {
-//                print("error downloading image")
-//
-//            }
         }.resume()
         
     }

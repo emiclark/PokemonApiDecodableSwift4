@@ -19,8 +19,8 @@ class TableViewController: UITableViewController {
         do {
             try ApiClient.getPokemonData(urlString: Constants.initialURL, completion: { (pokemonArr) in
                 DispatchQueue.main.async {
-                    print(self.pokemonArray)
                     self.pokemonArray.append(contentsOf: pokemonArr)
+                    print("getPokemonData() = \(self.pokemonArray)")
                     self.tableView.reloadData()
                 }
             })
@@ -48,31 +48,13 @@ class TableViewController: UITableViewController {
         cell.imageUrlString.text = pokemonArray[indexPath.row].url
         
         if let urlString =  pokemonArray[indexPath.row].url {
-            do {
-                try ApiClient.downloadImage(urlString: urlString, completion:  { (data)  in
-                    DispatchQueue.main.async {
-                        cell.pokemonImage.image = UIImage(data: data)
-                        self.tableView.reloadData()
-                    }
-                })
-            } catch let error {
-                print("image conversion failed-\(error.localizedDescription)")
-            }
-            
+            ApiClient.downloadImage(urlString: urlString, completion:  { (data)  in
+                DispatchQueue.main.async {
+                    cell.pokemonImage.image = UIImage(data: data)
+                    self.tableView.reloadData()
+                }
+            })
         }
-        
-        
-        
-        
-        
-        
-//        do {
-//            try ApiClient.downloadImages(urlString: urlString!, completion: { (pokeImage) in
-//                cell.pokemonImage.image = pokeImage
-//            })
-//        } catch let error {
-//            print("image conversion failed-\(error.localizedDescription)")
-//        }
         return cell
     }
 
