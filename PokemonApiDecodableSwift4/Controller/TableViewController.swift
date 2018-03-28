@@ -20,7 +20,7 @@ class TableViewController: UITableViewController {
             try ApiClient.getPokemonData(urlString: Constants.initialURL, completion: { (pokemonArr) in
                 DispatchQueue.main.async {
                     self.pokemonArray.append(contentsOf: pokemonArr)
-                    print("getPokemonData() = \(self.pokemonArray)")
+                    print("getPokemonData() = \(self.pokemonArray)!")
                     self.tableView.reloadData()
                 }
             })
@@ -48,55 +48,25 @@ class TableViewController: UITableViewController {
         cell.imageUrlString.text = pokemonArray[indexPath.row].url
         
         if let urlString =  pokemonArray[indexPath.row].url {
-        
            let url = URL(string: urlString)
             
             URLSession.shared.dataTask(with: url!) { (data, response, error) in
-                guard let data = data else { print("data is nil"); return }
+//                guard let data = data else { print("data is nil"); return }
                 
                 do {
-                    DispatchQueue.main.async {
-                        
-                        cell.pokemonImage.image = UIImage.init(data: data)
-                        self.tableView.reloadData()
-                    }
+                    
+                    let jsonString = try JSONSerialization.data(withJSONObject: data!, options: []) as? [String:Any]
+                    guard let json = jsonString else { print("json conversion failed"); return }
+                    print(json)
+                    
+                    
+                    
+                    
                 } catch let error {
-                    print("error= \(error.localizedDescription)")
+                    print("error getting sprite- \(error.localizedDescription)")
                 }
-                
             }.resume()
-            
-//            URLSession.shared.dataTask(with: url!) { (data, response, error) in
-//                guard let data = data else { print("data is nil"); return }
-//
-//                do {
-//                    DispatchQueue.main.async {
-//
-//                        cell.pokemonImage.image = UIImage.init(data: data)
-//                        self.tableView.reloadData()
-//                    }
-//                } catch let error {
-//                    print("error= \(error.localizedDescription)")
-//                }
-//
-//                }.resume()
-            
         }
-
-            
-            
-            
-        
-//        if let urlString =  pokemonArray[indexPath.row].url {
-//            ApiClient.downloadImage(urlString: urlString, completion:  { (data)  in
-//                DispatchQueue.main.async {
-//                    cell.pokemonImage.image = UIImage(data: data)
-//                    self.tableView.reloadData()
-//                }
-//            })
-//        } else {
-//            cell.pokemonImage.image = #imageLiteral(resourceName: "placeholder")
-//        }
         return cell
     }
 
