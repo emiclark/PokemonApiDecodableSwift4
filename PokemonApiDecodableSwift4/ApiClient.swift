@@ -35,17 +35,18 @@ class ApiClient {
         }.resume()
     }
     
-    static func downloadImage(urlString: String, completion: @escaping(Data)->()) {
-        let apiString = urlString
-        print("downloadImage() - \(apiString)")
-        guard let url = URL(string: apiString) else { print("Conversion to url failed"); return }
-        
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data else { print("data is nil"); return }
-            completion(data)
-        }.resume()
-        
-    }
+//    static func downloadImage(urlString: String, completion: @escaping(UIImage)->()) {
+//        let apiString = urlString
+//        print("downloadImage() - \(apiString)")
+//        guard let url = URL(string: apiString) else { print("Conversion to url failed"); return }
+//        
+//        URLSession.shared.dataTask(with: url) { (data, response, error) in
+//            guard let data = data else { print("data is nil"); return }
+//            let pokeImage = UIImage.init(data: data)
+//            completion(pokeImage)
+//        }.resume()
+//        
+//    }
 }
 
 // json sample

@@ -48,13 +48,55 @@ class TableViewController: UITableViewController {
         cell.imageUrlString.text = pokemonArray[indexPath.row].url
         
         if let urlString =  pokemonArray[indexPath.row].url {
-            ApiClient.downloadImage(urlString: urlString, completion:  { (data)  in
-                DispatchQueue.main.async {
-                    cell.pokemonImage.image = UIImage(data: data)
-                    self.tableView.reloadData()
+        
+           let url = URL(string: urlString)
+            
+            URLSession.shared.dataTask(with: url!) { (data, response, error) in
+                guard let data = data else { print("data is nil"); return }
+                
+                do {
+                    DispatchQueue.main.async {
+                        
+                        cell.pokemonImage.image = UIImage.init(data: data)
+                        self.tableView.reloadData()
+                    }
+                } catch let error {
+                    print("error= \(error.localizedDescription)")
                 }
-            })
+                
+            }.resume()
+            
+//            URLSession.shared.dataTask(with: url!) { (data, response, error) in
+//                guard let data = data else { print("data is nil"); return }
+//
+//                do {
+//                    DispatchQueue.main.async {
+//
+//                        cell.pokemonImage.image = UIImage.init(data: data)
+//                        self.tableView.reloadData()
+//                    }
+//                } catch let error {
+//                    print("error= \(error.localizedDescription)")
+//                }
+//
+//                }.resume()
+            
         }
+
+            
+            
+            
+        
+//        if let urlString =  pokemonArray[indexPath.row].url {
+//            ApiClient.downloadImage(urlString: urlString, completion:  { (data)  in
+//                DispatchQueue.main.async {
+//                    cell.pokemonImage.image = UIImage(data: data)
+//                    self.tableView.reloadData()
+//                }
+//            })
+//        } else {
+//            cell.pokemonImage.image = #imageLiteral(resourceName: "placeholder")
+//        }
         return cell
     }
 
