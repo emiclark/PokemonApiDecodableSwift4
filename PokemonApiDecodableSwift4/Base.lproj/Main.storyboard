@@ -47,14 +47,13 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="K9n-vX-lb6" secondAttribute="bottom" constant="37" id="Alq-Tm-uQk"/>
-                                        <constraint firstItem="K9n-vX-lb6" firstAttribute="leading" secondItem="oll-Gr-jRw" secondAttribute="trailing" constant="8" id="Mza-s4-AKF"/>
+                                        <constraint firstItem="K9n-vX-lb6" firstAttribute="leading" secondItem="oll-Gr-jRw" secondAttribute="trailing" constant="8" id="2w3-ja-Mhi"/>
+                                        <constraint firstItem="gq6-tQ-bjg" firstAttribute="leading" secondItem="oll-Gr-jRw" secondAttribute="trailing" constant="8" id="NAn-CX-4YY"/>
                                         <constraint firstItem="K9n-vX-lb6" firstAttribute="top" secondItem="gq6-tQ-bjg" secondAttribute="bottom" constant="8" id="Rbd-G2-QaQ"/>
                                         <constraint firstItem="oll-Gr-jRw" firstAttribute="top" secondItem="qt8-5N-6hf" secondAttribute="topMargin" constant="12" id="TKx-id-Bfq"/>
                                         <constraint firstItem="gq6-tQ-bjg" firstAttribute="trailing" secondItem="qt8-5N-6hf" secondAttribute="trailingMargin" id="WmN-3T-1IP"/>
                                         <constraint firstItem="K9n-vX-lb6" firstAttribute="trailing" secondItem="qt8-5N-6hf" secondAttribute="trailingMargin" id="bOd-EV-jt4"/>
-                                        <constraint firstItem="gq6-tQ-bjg" firstAttribute="leading" secondItem="oll-Gr-jRw" secondAttribute="trailing" constant="8" id="g9K-aM-1Ht"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="oll-Gr-jRw" secondAttribute="bottom" constant="6" id="tYW-OB-k6K"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="K9n-vX-lb6" secondAttribute="bottom" constant="37" id="paU-di-znR"/>
                                         <constraint firstItem="gq6-tQ-bjg" firstAttribute="top" secondItem="qt8-5N-6hf" secondAttribute="topMargin" constant="35" id="vi3-Sf-9CP"/>
                                         <constraint firstItem="oll-Gr-jRw" firstAttribute="leading" secondItem="qt8-5N-6hf" secondAttribute="leadingMargin" id="yB3-xX-bWi"/>
                                     </constraints>
