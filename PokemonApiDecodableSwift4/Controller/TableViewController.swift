@@ -50,23 +50,28 @@ class TableViewController: UITableViewController {
         
         if let urlString =  pokemonArray[indexPath.row].url {
            let url = URL(string: urlString)
+            print(urlString)
             
             URLSession.shared.dataTask(with: url!) { (data, response, error) in
                 guard let data = data else { print("data is nil"); return }
                 
                 do {
                     let spriteUrlString = try JSONDecoder().decode(MainJsonSprites.self, from: data)
-                    print(spriteUrlString)
                     
                     guard let url = URL(string: (spriteUrlString.sprites?.front_default)!) else { print("sprite url nil"); return }
+                    
+
+                    // download sprite images
                     URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
-                            guard let data = data else { print("sprite data nil"); return }
+                        guard let data = data else { print("sprite data nil"); return }
+
+                        print(data,  (spriteUrlString.sprites?.front_default)!)
                         
-                            DispatchQueue.main.async {
-                                cell.pokemonImage.image = UIImage(data: data)
-                                self.tableView.reloadData()
-                            }
-                        }).resume()
+//                            DispatchQueue.main.async {
+//                                cell.pokemonImage.image = UIImage(data: data)
+//                                self.tableView.reloadData()
+//                            }
+                    }).resume()
                     
                     
                 } catch let error {
