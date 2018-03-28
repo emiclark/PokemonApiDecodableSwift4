@@ -35,14 +35,24 @@ class ApiClient {
         }.resume()
     }
     
-    static func downloadImages(urlString: String, completion: @escaping(UIImage)->()) throws {
-        guard let url = URL(string: urlString) else { print("urlstring is nil"); return }
+    static func downloadImage(urlString: String, completion: @escaping(Data)->()) throws {
+        let apiString = urlString
+        guard let url = URL(string: apiString) else { print("Conversion to url failed"); return }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data else { print("data is nil"); return }
-            let pokeImage = try UIImage(data: data)
-            completion()
+
+            completion(data)
+
+//            do {
+//                let pokeImage = try UIImage(data: data) {
+//                completion(pokeImage)
+//            } catch let error {
+//                print("error downloading image")
+//
+//            }
         }.resume()
+        
     }
 }
 
