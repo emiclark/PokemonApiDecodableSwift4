@@ -19,8 +19,13 @@ struct Pokemon: Decodable {
     var url: String?
 }
 
-class Sprites: Decodable {
-    var front_default: Data?
+class MainJsonSprites: Decodable {
+    var sprites: Sprites?
+}
+
+struct Sprites: Decodable {
+    var front_default: String?
+    var front_shiny: String?
 }
 
 

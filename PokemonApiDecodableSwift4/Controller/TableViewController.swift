@@ -46,6 +46,7 @@ class TableViewController: UITableViewController {
         
         cell.title.text = pokemonArray[indexPath.row].name 
         cell.imageUrlString.text = pokemonArray[indexPath.row].url
+        cell.pokemonImage.image = #imageLiteral(resourceName: "placeholder")
         
         if let urlString =  pokemonArray[indexPath.row].url {
            let url = URL(string: urlString)
@@ -54,19 +55,22 @@ class TableViewController: UITableViewController {
                 guard let data = data else { print("data is nil"); return }
                 
                 do {
-                    let sprite = try JSONDecoder().decode(Sprites.self, from: data)
-                    print(sprite)
+                    let spriteUrlString = try JSONDecoder().decode(MainJsonSprites.self, from: data)
+                    print(spriteUrlString)
                     
-                    
-//                    let jsonString = try JSONSerialization.data(withJSONObject: data!, options: []) as? [String:Any]
-//                    guard let json = jsonString else { print("json conversion failed"); return }
-//                    print(json)
-                    
-                    
+                    guard let url = URL(string: (spriteUrlString.sprites?.front_default)!) else { print("sprite url nil"); return }
+                    URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+                            guard let data = data else { print("sprite data nil"); return }
+                        
+                            DispatchQueue.main.async {
+                                cell.pokemonImage.image = UIImage(data: data)
+                                self.tableView.reloadData()
+                            }
+                        }).resume()
                     
                     
                 } catch let error {
-                    print("error getting sprite- \(error.localizedDescription)")
+                    print("error getting sprites - \(error.localizedDescription)")
                 }
             }.resume()
         }
