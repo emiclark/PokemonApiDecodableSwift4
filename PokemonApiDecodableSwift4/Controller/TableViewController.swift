@@ -51,13 +51,16 @@ class TableViewController: UITableViewController {
            let url = URL(string: urlString)
             
             URLSession.shared.dataTask(with: url!) { (data, response, error) in
-//                guard let data = data else { print("data is nil"); return }
+                guard let data = data else { print("data is nil"); return }
                 
                 do {
+                    let sprite = try JSONDecoder().decode(Sprites.self, from: data)
+                    print(sprite)
                     
-                    let jsonString = try JSONSerialization.data(withJSONObject: data!, options: []) as? [String:Any]
-                    guard let json = jsonString else { print("json conversion failed"); return }
-                    print(json)
+                    
+//                    let jsonString = try JSONSerialization.data(withJSONObject: data!, options: []) as? [String:Any]
+//                    guard let json = jsonString else { print("json conversion failed"); return }
+//                    print(json)
                     
                     
                     
