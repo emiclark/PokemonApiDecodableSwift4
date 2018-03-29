@@ -21,7 +21,7 @@ class ApiClient {
         guard let apiURL = URL(string: apiString) else { print("url conversion failed"); return }
         
         URLSession.shared.dataTask(with: apiURL) { (data, response, error) in
-            guard let data = data else {print("data nil"); return }
+            guard let data = data else {print("getPokemonData()- data nil"); return }
             
             do {
                 let mainJson = try JSONDecoder().decode(MainJSON.self, from: data)

@@ -20,12 +20,12 @@ struct Pokemon: Decodable {
 }
 
 class MainJsonSprites: Decodable {
-    var sprites: Sprites?
+    var sprites: [Sprites]?
 }
 
 struct Sprites: Decodable {
     var front_default: String?
-    var front_shiny: String?
+    var front_shiny: String
 }
 
 
