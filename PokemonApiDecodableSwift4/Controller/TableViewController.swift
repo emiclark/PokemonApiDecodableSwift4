@@ -53,52 +53,74 @@ class TableViewController: UITableViewController {
         
         
         //        https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png
-        // separate components by '/' into an array
+        
+        // separate string into components separated by '/' into an array. grab 2nd from last value.
         let urlString = pokemonArray[indexPath.row].url!
         let tempArr = urlString.components(separatedBy: "/")
         let digit = tempArr[tempArr.count-2]
-        let baseSpriteUrlString = Constants.baseSpriteURLString + "\(digit).png"
+        let spriteUrlString = Constants.baseSpriteURLString + "\(digit).png"
 
-        //        print(baseSpriteUrlString)
-       let url = URL(string: baseSpriteUrlString)
-
-        URLSession.shared.dataTask(with: url!) { (data, response, error) in
-            guard let data = data else { print("data is nil"); return }
-
-            let spriteImage = UIImage(data: data)!
-            self.spritesArray.append(spriteImage)
-
-            DispatchQueue.main.async {
-                cell.pokemonImage.image =  spriteImage
-                self.tableView.reloadData()
+//        print(spriteUrlString)
+        
+        downloadImage(spriteUrlString) { (image) -> Void in
+            if let image = image{
+                DispatchQueue.main.async {
+                    cell.pokemonImage.image = image
+                    print(spriteUrlString)
+//                    self.tableView.reloadData()
+                }
             }
-        }.resume()
+        }
         return cell
     }
     
-    func downloadImage(url: URL) -> (UIImage) {
-        var imageData = UIImage()
+    func downloadImage(_ urlString: String, completion: @escaping (_ image:UIImage?)-> Void) {
+        let imageURL: URL = URL(string: urlString)!
         
-        print("Download Started")
-        getDataFromUrl(url: url) { data, response, error in
-            guard let data = data, error == nil else { return }
-            print(response?.suggestedFilename ?? url.lastPathComponent)
-            print("Download Finished")
-            DispatchQueue.main.async() {
-                imageData = UIImage(data: data)!
-                print(imageData)
-//                return imageData
+        URLSession.shared.dataTask(with: imageURL) { (data, _, _) in
+            if let data = data{
+                completion(UIImage(data: data))
             }
-        }
-        return #imageLiteral(resourceName: "placeholder")
-    }
-    
-    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            completion(data, response, error)
-            }.resume()
+        }.resume()
     }
 }
+    
+//    func downloadImage(url: URL) -> (UIImage) {
+//
+//        print("Download Started")
+//        getDataFromUrl(url: url) { data, response, error in
+//            guard let data = data, error == nil else { return }
+//            print(response?.suggestedFilename ?? url.lastPathComponent)
+//            print("Download Finished")
+//            DispatchQueue.main.async() {
+//                let imageData = UIImage(data: data)!
+//                return imageData
+//            }
+//        }
+//        return #imageLiteral(resourceName: "placeholder")
+//    }
+    
+//    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+//        URLSession.shared.dataTask(with: url) { data, response, error in
+//            completion(data, response, error)
+//            }.resume()
+//    }
+    
+    
+    
+    
+    //==
+    
+//    loadImage("SomeURL") { (image) -> Void in
+//        if let image = image{
+//            DispatchQueue.main.async {
+//                self.imageView.image = image
+//            }
+//        }
+//    }
+    
+    
+//}
 
 
 //==============
