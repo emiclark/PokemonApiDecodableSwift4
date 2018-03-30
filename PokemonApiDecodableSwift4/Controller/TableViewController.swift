@@ -51,56 +51,67 @@ class TableViewController: UITableViewController {
         cell.imageUrlString.text = pokemonArray[indexPath.row].url
         cell.pokemonImage.image = #imageLiteral(resourceName: "placeholder")
         
-        if let urlString =  pokemonArray[indexPath.row].url {
-           let url = URL(string: urlString)
-            
-            URLSession.shared.dataTask(with: url!) { (data, response, error) in
-                guard let data = data else { print("data is nil"); return }
-                
-                do {
-                    let sprites = try JSONDecoder().decode([Sprites].self, from: data)
-                    self.spritesArray.append(contentsOf: sprites)
-                    print(self.spritesArray)
-                    
-                    DispatchQueue.main.async {
-                        
-                        // download sprite image
-                        for sprite in self.spritesArray {
-                            guard let spriteUrlString = sprite.front_default else {print("sprite urlString nil"); return }
-                            guard let url = URL(string: spriteUrlString) else {print("url conversion failed"); return }
-                            
-                            let imageData = self.downloadImage(url: url)
-                            cell.pokemonImage.image =  imageData
-                        }
-                        self.tableView.reloadData()
-                    }
-                    
-                    
+        
+        //        https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png
+        // separate components by '/'
+        
+        let fullString = pokemonArray[indexPath.row].url!
+        let fullNameArr = fullString.components(separatedBy: "/")
+        let digit = fullNameArr.last!
+        
+        let baseSpriteUrlString = Constants.baseSpriteURLString + digit + "png"
+        print(baseSpriteUrlString)
+        
+//        if let urlString =  pokemonArray[indexPath.row].url {
+//           let url = URL(string: urlString)
+//
+//            URLSession.shared.dataTask(with: url!) { (data, response, error) in
+//                guard let data = data else { print("data is nil"); return }
+//
+//                do {
+//                    let sprites = try JSONDecoder().decode([Sprites].self, from: data)
+//                    self.spritesArray.append(contentsOf: sprites)
+//                    print(self.spritesArray)
+//
 //                    DispatchQueue.main.async {
-//                        self.spritesArray.append(sprite.sprites!)
-//                        print("\n\(sprite.sprites!)!")
 //
 //                        // download sprite image
-//                        if let spriteUrlString = sprite.sprites?.front_default {
-//                            let url = URL(string: spriteUrlString)
-//                            let imageData = self.downloadImage(url: url!)
+//                        for sprite in self.spritesArray {
+//                            guard let spriteUrlString = sprite.front_default else {print("sprite urlString nil"); return }
+//                            guard let url = URL(string: spriteUrlString) else {print("url conversion failed"); return }
+//
+//                            let imageData = self.downloadImage(url: url)
 //                            cell.pokemonImage.image =  imageData
 //                        }
 //                        self.tableView.reloadData()
 //                    }
 //
-                    
-//                    if let spriteUrl = mainJsonSpriteArr.sprites![indexPath.row] {
-//                        
-//                        downloadImage(url: URL(url: spriteUrl))
-//                    }
-  
-                    
-                } catch let error {
-                    print("error getting sprites - \(error.localizedDescription)")
-                }
-            }.resume()
-        }
+//
+////                    DispatchQueue.main.async {
+////                        self.spritesArray.append(sprite.sprites!)
+////                        print("\n\(sprite.sprites!)!")
+////
+////                        // download sprite image
+////                        if let spriteUrlString = sprite.sprites?.front_default {
+////                            let url = URL(string: spriteUrlString)
+////                            let imageData = self.downloadImage(url: url!)
+////                            cell.pokemonImage.image =  imageData
+////                        }
+////                        self.tableView.reloadData()
+////                    }
+////
+//
+////                    if let spriteUrl = mainJsonSpriteArr.sprites![indexPath.row] {
+////
+////                        downloadImage(url: URL(url: spriteUrl))
+////                    }
+//
+//
+//                } catch let error {
+//                    print("error getting sprites - \(error.localizedDescription)")
+//                }
+//            }.resume()
+//        }
         return cell
     }
     
