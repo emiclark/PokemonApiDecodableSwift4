@@ -16,6 +16,8 @@ class PokemonTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.pokemonImage.layer.borderWidth = 1
+        self.pokemonImage.layer.borderColor = UIColor.orange.cgColor
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
