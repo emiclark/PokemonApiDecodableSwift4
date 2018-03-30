@@ -53,13 +53,11 @@ class TableViewController: UITableViewController {
         
         
         //        https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png
-        // separate components by '/'
-        
-        let fullString = pokemonArray[indexPath.row].url!
-        let fullNameArr = fullString.components(separatedBy: "/")
-        let digit = fullNameArr.last!
-        
-        let baseSpriteUrlString = Constants.baseSpriteURLString + digit + "png"
+        // separate components by '/' into an array
+        let urlString = pokemonArray[indexPath.row].url!
+        let tempArr = urlString.components(separatedBy: "/")
+        let digit = tempArr[tempArr.count-2]
+        let baseSpriteUrlString = Constants.baseSpriteURLString + "\(digit).png"
         print(baseSpriteUrlString)
         
 //        if let urlString =  pokemonArray[indexPath.row].url {
