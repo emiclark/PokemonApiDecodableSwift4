@@ -43,7 +43,6 @@ class TableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PokemonTableViewCell
         
         cell.title.text = pokemonArray[indexPath.row].name 
-        cell.imageUrlString.text = pokemonArray[indexPath.row].url
         cell.pokemonImage.image = #imageLiteral(resourceName: "placeholder")
         
         // separate string into components separated by '/' into an array. grab 2nd from last value.
@@ -62,7 +61,7 @@ class TableViewController: UITableViewController {
         return cell
     }
     
-    func downloadImage(_ urlString: String, handler:@escaping (_ image:UIImage?)-> Void) {
+    func downloadImage(_ urlString: String, handler: @escaping (_ image:UIImage?)-> Void) {
         let imageURL: URL = URL(string: urlString)!
         
         URLSession.shared.dataTask(with: imageURL) { (data, _, _) in

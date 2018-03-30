@@ -40,21 +40,20 @@
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBound" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gq6-tQ-bjg">
-                                            <rect key="frame" x="178" y="46" width="181" height="24"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <nil key="textColor"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gq6-tQ-bjg">
+                                            <rect key="frame" x="167" y="46" width="192" height="27.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                            <color key="textColor" red="0.16643228588884729" green="0.41944632801930665" blue="0.65439453125000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="gq6-tQ-bjg" secondAttribute="bottom" constant="59" id="5Kf-EZ-iHx"/>
+                                        <constraint firstItem="gq6-tQ-bjg" firstAttribute="leading" secondItem="oll-Gr-jRw" secondAttribute="trailing" constant="20" id="8pO-1N-br8"/>
+                                        <constraint firstItem="gq6-tQ-bjg" firstAttribute="trailing" secondItem="qt8-5N-6hf" secondAttribute="trailingMargin" id="B1F-dw-Jh2"/>
                                         <constraint firstItem="oll-Gr-jRw" firstAttribute="top" secondItem="qt8-5N-6hf" secondAttribute="topMargin" constant="8" id="FTP-VY-20q"/>
                                         <constraint firstItem="oll-Gr-jRw" firstAttribute="leading" secondItem="qt8-5N-6hf" secondAttribute="leadingMargin" constant="31" id="O7p-PW-8tu"/>
-                                        <constraint firstItem="gq6-tQ-bjg" firstAttribute="leading" secondItem="oll-Gr-jRw" secondAttribute="trailing" constant="31" id="ZAH-qc-SfE"/>
-                                        <constraint firstItem="gq6-tQ-bjg" firstAttribute="top" secondItem="qt8-5N-6hf" secondAttribute="topMargin" constant="35" id="Zy7-xi-grI"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="oll-Gr-jRw" secondAttribute="bottom" constant="10" id="lDs-Kr-wcJ"/>
-                                        <constraint firstItem="gq6-tQ-bjg" firstAttribute="trailing" secondItem="qt8-5N-6hf" secondAttribute="trailingMargin" id="odC-6h-JDj"/>
+                                        <constraint firstItem="gq6-tQ-bjg" firstAttribute="top" secondItem="qt8-5N-6hf" secondAttribute="top" constant="46" id="vwf-w8-dMS"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
