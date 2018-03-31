@@ -15,6 +15,37 @@ class TableViewController: UITableViewController {
     // MARK:- View Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        let headerview: UIView = {
+            let header = UIView()
+            header.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 75)
+            header.backgroundColor = UIColor(red: 101.0, green: 102.0, blue: 151.0, alpha: 1.0)
+            return header
+        }()
+        
+        let title: UILabel = {
+            let label = UILabel()
+            label.textColor = UIColor.red
+            label.textAlignment = .center
+            label.backgroundColor = UIColor.cyan
+            label.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 50)
+            label.center = headerview.center
+            return label
+        }()
+        
+        headerview.translatesAutoresizingMaskIntoConstraints = false
+        title.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(headerview)
+        headerview.addSubview(title)
+        
+        NSLayoutConstraint.activate([
+            headerview.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            headerview.centerYAnchor.constraint(equalTo:  self.view.centerYAnchor),
+            headerview.topAnchor.constraint(equalTo: self.view.topAnchor),
+            self.tableView.topAnchor.constraint(equalTo: headerview.bottomAnchor)
+            ])
+        
+        
+        
         
         do {
             try ApiClient.getPokemonData(urlString: Constants.initialURL, completion: { (pokemonArr) in
