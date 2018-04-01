@@ -18,15 +18,16 @@ class TableViewController: UITableViewController {
         let headerview: UIView = {
             let header = UIView()
             header.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 75)
-            header.backgroundColor = UIColor(red: 101.0, green: 102.0, blue: 151.0, alpha: 1.0)
+            header.backgroundColor = UIColor(red: 101/255, green: 102/255, blue: 151/255, alpha: 1)
             return header
         }()
         
         let title: UILabel = {
             let label = UILabel()
-            label.textColor = UIColor.red
+            label.textColor = UIColor.white
             label.textAlignment = .center
-            label.backgroundColor = UIColor.cyan
+            label.text = "Pokemons"
+            label.font = UIFont.boldSystemFont(ofSize: 25)
             label.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 50)
             label.center = headerview.center
             return label
@@ -34,19 +35,10 @@ class TableViewController: UITableViewController {
         
         headerview.translatesAutoresizingMaskIntoConstraints = false
         title.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(headerview)
         headerview.addSubview(title)
-        
-        NSLayoutConstraint.activate([
-            headerview.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            headerview.centerYAnchor.constraint(equalTo:  self.view.centerYAnchor),
-            headerview.topAnchor.constraint(equalTo: self.view.topAnchor),
-            self.tableView.topAnchor.constraint(equalTo: headerview.bottomAnchor)
-            ])
-        
-        
-        
-        
+        self.view.addSubview(headerview)
+        self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+
         do {
             try ApiClient.getPokemonData(urlString: Constants.initialURL, completion: { (pokemonArr) in
                 DispatchQueue.main.async {
