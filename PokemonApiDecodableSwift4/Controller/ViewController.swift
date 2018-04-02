@@ -18,6 +18,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         do {
             try ApiClient.getPokemonData(urlString: Constants.getInitialPokemonDataUrlString) { (pokemonArr) in
+                self.pokemonArray = pokemonArr
+                
                 DispatchQueue.main.async {
                     self.tableview.reloadData()
                 }
@@ -51,6 +53,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             print("error getting sprite image - \(error.localizedDescription)")
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 140
     }
 }
 ////======
