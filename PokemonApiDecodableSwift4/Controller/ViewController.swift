@@ -15,6 +15,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableview.delegate = self
+        self.tableview.dataSource = self
         
         do {
             try ApiClient.getPokemonData(urlString: Constants.getInitialPokemonDataUrlString) { (pokemonArr) in
@@ -59,80 +61,4 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return 140
     }
 }
-////======
-////    // MARK:- Api Calls
-//func getPokemonData(completion: @escaping()->()) {
-//
-//    // make api call
-//    let apiString = "http://pokeapi.co/api/v2/pokemon/"
-//    guard let apiURL = URL(string: apiString) else { print("url conversion failed"); return }
-//
-//    URLSession.shared.dataTask(with: apiURL) { (data, response, error) in
-//        guard let data = data else {print("data nil"); return }
-//
-//        do {
-//            let mainJson = try JSONDecoder().decode(MainJSON.self, from: data)
-//            if let  pokemonArr = mainJson.results {
-//
-//                print("previous: \(mainJson.previous ?? "no previous page")\nnext: \(mainJson.next ?? "no next page")\n")
-//
-//                self.pokemonArray.append(contentsOf: pokemonArr)
-//
-//                // print pokemon array
-//                for item in self.pokemonArray {
-//                    print(item.name as String!, item.url as String!)
-//                }
-//                var count = 1
-//                while mainJson.next != nil && count < 3 {
-//                    self.getMorePokemonData(urlString: mainJson.next!, completion: {
-//                        print("get more data: \(count)")
-//                    })
-//                    count += 1
-//                }
-//
-//                DispatchQueue.main.async {
-//                    completion()
-//                }
-//            }
-//        } catch {
-//            print("error getting Pokemon data objects")
-//        }
-//        }.resume()
-//}
-//
-//func getMorePokemonData(urlString: String, completion: @escaping()->()) {
-//
-//    // make api call
-//    let apiString = urlString
-//    guard let apiURL = URL(string: apiString) else { print("url conversion failed"); return }
-//
-//    URLSession.shared.dataTask(with: apiURL) { (data, response, error) in
-//        guard let data = data else {print("data nil"); return }
-//
-//        do {
-//            let mainJson = try JSONDecoder().decode(MainJSON.self, from: data)
-//            if let  pokemonArr = mainJson.results {
-//
-//                print("previous: \(mainJson.previous ?? "no previous page")\nnext: \(mainJson.next ?? "no next page")\n")
-//
-//                self.pokemonArray.append(contentsOf: pokemonArr)
-//
-//                // print pokemon array
-//                for item in self.pokemonArray {
-//                    print(item.name as String!, item.url as String!)
-//                }
-//
-//
-//
-//                DispatchQueue.main.async {
-//
-//                    completion()
-//                }
-//            }
-//        } catch {
-//            print("error getting Pokemon data objects")
-//        }
-//        }.resume()
-//}
-
 

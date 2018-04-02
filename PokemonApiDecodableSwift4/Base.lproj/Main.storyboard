@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pll-Pv-lCB">
-                                <rect key="frame" x="0.0" y="93" width="375" height="574"/>
+                                <rect key="frame" x="0.0" y="85" width="375" height="582"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="140" id="QNX-YV-fcK" customClass="PokemonTableViewCell" customModule="PokemonApiDecodableSwift4" customModuleProvider="target">
@@ -86,7 +86,7 @@
                             <constraint firstItem="kJf-gd-1Ah" firstAttribute="top" secondItem="ZAT-ov-Q8A" secondAttribute="top" id="E98-ic-kOM"/>
                             <constraint firstItem="Pll-Pv-lCB" firstAttribute="trailing" secondItem="2ih-df-csx" secondAttribute="trailing" id="ZWS-qX-wkI"/>
                             <constraint firstItem="kJf-gd-1Ah" firstAttribute="trailing" secondItem="2ih-df-csx" secondAttribute="trailing" id="Zcf-Pb-0Mm"/>
-                            <constraint firstItem="Pll-Pv-lCB" firstAttribute="top" secondItem="kJf-gd-1Ah" secondAttribute="bottom" constant="8" id="epY-WI-bB2"/>
+                            <constraint firstItem="Pll-Pv-lCB" firstAttribute="top" secondItem="kJf-gd-1Ah" secondAttribute="bottom" id="epY-WI-bB2"/>
                             <constraint firstItem="Pll-Pv-lCB" firstAttribute="bottom" secondItem="2ih-df-csx" secondAttribute="bottom" id="iq4-dS-YeG"/>
                             <constraint firstItem="Pll-Pv-lCB" firstAttribute="leading" secondItem="2ih-df-csx" secondAttribute="leading" id="lK7-wt-FSD"/>
                             <constraint firstItem="kJf-gd-1Ah" firstAttribute="leading" secondItem="2ih-df-csx" secondAttribute="leading" id="olw-sf-u2O"/>
