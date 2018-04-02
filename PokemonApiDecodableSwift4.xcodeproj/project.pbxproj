@@ -8,12 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		0026F68120606CA9002D268F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0026F68020606CA9002D268F /* AppDelegate.swift */; };
-		0026F68320606CA9002D268F /* TableviewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0026F68220606CA9002D268F /* TableviewController2.swift */; };
 		0026F68620606CA9002D268F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0026F68420606CA9002D268F /* Main.storyboard */; };
 		0026F68820606CA9002D268F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0026F68720606CA9002D268F /* Assets.xcassets */; };
 		0026F68B20606CA9002D268F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0026F68920606CA9002D268F /* LaunchScreen.storyboard */; };
+		00664DE3206FFF09007A3DAE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00664DE2206FFF09007A3DAE /* ViewController.swift */; };
 		008B74502069D08600DC5E8E /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008B744F2069D08600DC5E8E /* Pokemon.swift */; };
-		008B74522069D19B00DC5E8E /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008B74512069D19B00DC5E8E /* TableViewController.swift */; };
 		008B74542069D26400DC5E8E /* PokemonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008B74532069D26400DC5E8E /* PokemonTableViewCell.swift */; };
 		008B74582069D49800DC5E8E /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008B74572069D49800DC5E8E /* ApiClient.swift */; };
 		008B745A2069E96500DC5E8E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008B74592069E96500DC5E8E /* Constants.swift */; };
@@ -22,13 +21,12 @@
 /* Begin PBXFileReference section */
 		0026F67D20606CA9002D268F /* PokemonApiDecodableSwift4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonApiDecodableSwift4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0026F68020606CA9002D268F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0026F68220606CA9002D268F /* TableviewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableviewController2.swift; sourceTree = "<group>"; };
 		0026F68520606CA9002D268F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0026F68720606CA9002D268F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0026F68A20606CA9002D268F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0026F68C20606CA9002D268F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00664DE2206FFF09007A3DAE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		008B744F2069D08600DC5E8E /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
-		008B74512069D19B00DC5E8E /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		008B74532069D26400DC5E8E /* PokemonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTableViewCell.swift; sourceTree = "<group>"; };
 		008B74572069D49800DC5E8E /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		008B74592069E96500DC5E8E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = PokemonApiDecodableSwift4/Constants.swift; sourceTree = SOURCE_ROOT; };
@@ -71,7 +69,6 @@
 				008B74562069D42D00DC5E8E /* Model */,
 				008B74552069D42000DC5E8E /* Controller */,
 				0026F68720606CA9002D268F /* Assets.xcassets */,
-				0026F68220606CA9002D268F /* TableviewController2.swift */,
 				0026F68920606CA9002D268F /* LaunchScreen.storyboard */,
 				0026F68C20606CA9002D268F /* Info.plist */,
 			);
@@ -82,7 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				008B74532069D26400DC5E8E /* PokemonTableViewCell.swift */,
-				008B74512069D19B00DC5E8E /* TableViewController.swift */,
+				00664DE2206FFF09007A3DAE /* ViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -167,12 +164,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0026F68320606CA9002D268F /* TableviewController2.swift in Sources */,
-				008B74522069D19B00DC5E8E /* TableViewController.swift in Sources */,
 				0026F68120606CA9002D268F /* AppDelegate.swift in Sources */,
 				008B74542069D26400DC5E8E /* PokemonTableViewCell.swift in Sources */,
 				008B745A2069E96500DC5E8E /* Constants.swift in Sources */,
 				008B74502069D08600DC5E8E /* Pokemon.swift in Sources */,
+				00664DE3206FFF09007A3DAE /* ViewController.swift in Sources */,
 				008B74582069D49800DC5E8E /* ApiClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
