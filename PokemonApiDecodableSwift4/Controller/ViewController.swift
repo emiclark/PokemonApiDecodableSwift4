@@ -50,7 +50,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             // use image in cache
             cell.pokemonImage.image = self.imageCache.object(forKey: NSString(string: url!))
         } else {
-            // image not cached so download image
+            // image not cached - download image
             do {
                 try ApiClient.getSpriteImage(urlString: url!, completion: { (spriteImage) in
                     DispatchQueue.main.async {
@@ -66,7 +66,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 140
+        return CGFloat(Constants.rowHeight)
     }
 }
 
