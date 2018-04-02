@@ -50,12 +50,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             // use image in cache
             cell.pokemonImage.image = self.imageCache.object(forKey: NSString(string: url!))
         } else {
-            // image not cached so download image
+            // image not cached - download image
             do {
                 try ApiClient.getSpriteImage(urlString: url!, completion: { (spriteImage) in
                     DispatchQueue.main.async {
-                        cell.pokemonImage.image = spriteImage
-                        self.imageCache.setObject(spriteImage, forKey: NSString(string: url!))
+                        // check if cell is visible before assigning image
+                        if self.tableview.cellForRow(at: indexPath) != nil {
+                            cell.pokemonImage.image = spriteImage
+                            self.imageCache.setObject(spriteImage, forKey: NSString(string: url!))
+                        }
                     }
                 })
             } catch let error {
@@ -66,7 +69,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 140
+        return CGFloat(Constants.rowHeight)
     }
 }
 

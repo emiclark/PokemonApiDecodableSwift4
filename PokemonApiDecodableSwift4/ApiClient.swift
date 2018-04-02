@@ -10,9 +10,7 @@ import Foundation
 import UIKit
 
 class ApiClient {
-    
-    static var pokemonArray = [Pokemon]()
-    
+        
     // MARK:- Api Calls
     class func getPokemonData(urlString: String, completion: @escaping([Pokemon])->()) throws {
 
@@ -58,8 +56,6 @@ class ApiClient {
         let array = id.components(separatedBy: "/")
         let spriteId = array[array.count - 2]
         let spriteUrlString = Constants.baseSpriteUrlString + spriteId + ".png"
-        print(spriteUrlString)
-
         return spriteUrlString
     }
 }

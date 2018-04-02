@@ -11,5 +11,6 @@ import Foundation
 struct Constants {
     static let getInitialPokemonDataUrlString = "http://pokeapi.co/api/v2/pokemon/"
     static let baseSpriteUrlString = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
+    static let rowHeight = 140
 }
 
