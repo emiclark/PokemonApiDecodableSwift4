@@ -12,6 +12,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var tableview: UITableView!
     var pokemonArray = [Pokemon]()
+    let imageCache = NSCache<NSString, UIImage>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,14 +46,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.title.text = pokemonArray[indexPath.row].name
         let url = pokemonArray[indexPath.row].url
         
-        do {
-            try ApiClient.getSpriteImage(urlString: url!, completion: { (spriteImage) in
-                DispatchQueue.main.async {
-                    cell.pokemonImage.image = spriteImage
-                }
-            })
-        } catch let error {
-            print("error getting sprite image - \(error.localizedDescription)")
+        if self.imageCache.object(forKey: NSString(string: url!)) != nil {
+            // use image in cache
+            cell.pokemonImage.image = self.imageCache.object(forKey: NSString(string: url!))
+        } else {
+            // image not cached so download image
+            do {
+                try ApiClient.getSpriteImage(urlString: url!, completion: { (spriteImage) in
+                    DispatchQueue.main.async {
+                        cell.pokemonImage.image = spriteImage
+                        self.imageCache.setObject(spriteImage, forKey: NSString(string: url!))
+                    }
+                })
+            } catch let error {
+                print("error getting sprite image - \(error.localizedDescription)")
+            }
         }
         return cell
     }
