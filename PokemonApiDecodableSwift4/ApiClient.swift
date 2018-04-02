@@ -56,8 +56,6 @@ class ApiClient {
         let array = id.components(separatedBy: "/")
         let spriteId = array[array.count - 2]
         let spriteUrlString = Constants.baseSpriteUrlString + spriteId + ".png"
-        print(spriteUrlString)
-
         return spriteUrlString
     }
 }

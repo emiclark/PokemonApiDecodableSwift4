@@ -54,8 +54,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             do {
                 try ApiClient.getSpriteImage(urlString: url!, completion: { (spriteImage) in
                     DispatchQueue.main.async {
-                        cell.pokemonImage.image = spriteImage
-                        self.imageCache.setObject(spriteImage, forKey: NSString(string: url!))
+                        // check if cell is visible before assigning image
+                        if self.tableview.cellForRow(at: indexPath) != nil {
+                            cell.pokemonImage.image = spriteImage
+                            self.imageCache.setObject(spriteImage, forKey: NSString(string: url!))
+                        }
                     }
                 })
             } catch let error {
