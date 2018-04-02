@@ -70,6 +70,9 @@
                                     <outlet property="delegate" destination="h7C-Qn-GSG" id="N6h-qZ-HHG"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="UbM-tv-TAs">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                            </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pokemons" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJf-gd-1Ah">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
                                 <color key="backgroundColor" red="0.1664322859" green="0.41944632799999998" blue="0.65439453130000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -84,8 +87,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="kJf-gd-1Ah" firstAttribute="top" secondItem="ZAT-ov-Q8A" secondAttribute="top" id="E98-ic-kOM"/>
+                            <constraint firstItem="UbM-tv-TAs" firstAttribute="centerY" secondItem="ZAT-ov-Q8A" secondAttribute="centerY" id="Nb8-3H-1Jb"/>
                             <constraint firstItem="Pll-Pv-lCB" firstAttribute="trailing" secondItem="2ih-df-csx" secondAttribute="trailing" id="ZWS-qX-wkI"/>
                             <constraint firstItem="kJf-gd-1Ah" firstAttribute="trailing" secondItem="2ih-df-csx" secondAttribute="trailing" id="Zcf-Pb-0Mm"/>
+                            <constraint firstItem="UbM-tv-TAs" firstAttribute="centerX" secondItem="ZAT-ov-Q8A" secondAttribute="centerX" id="bBq-Ml-fMG"/>
                             <constraint firstItem="Pll-Pv-lCB" firstAttribute="top" secondItem="kJf-gd-1Ah" secondAttribute="bottom" id="epY-WI-bB2"/>
                             <constraint firstItem="Pll-Pv-lCB" firstAttribute="bottom" secondItem="2ih-df-csx" secondAttribute="bottom" id="iq4-dS-YeG"/>
                             <constraint firstItem="Pll-Pv-lCB" firstAttribute="leading" secondItem="2ih-df-csx" secondAttribute="leading" id="lK7-wt-FSD"/>
@@ -94,6 +99,7 @@
                         <viewLayoutGuide key="safeArea" id="2ih-df-csx"/>
                     </view>
                     <connections>
+                        <outlet property="indicator" destination="UbM-tv-TAs" id="nkU-Yz-0MQ"/>
                         <outlet property="tableview" destination="Pll-Pv-lCB" id="rm6-Qy-alx"/>
                     </connections>
                 </viewController>

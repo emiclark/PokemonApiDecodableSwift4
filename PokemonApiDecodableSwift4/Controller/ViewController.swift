@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     @IBOutlet weak var tableview: UITableView!
     var pokemonArray = [Pokemon]()
     let imageCache = NSCache<NSString, UIImage>()
@@ -18,11 +19,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         self.tableview.delegate = self
         self.tableview.dataSource = self
+        self.indicator.activityIndicatorViewStyle = .whiteLarge
+        self.indicator.color = UIColor.blue
+        self.indicator.sizeThatFits(CGSize(width: 50, height: 50))
+        self.indicator.startAnimating()
         
         do {
             try ApiClient.getPokemonData(urlString: Constants.getInitialPokemonDataUrlString) { (pokemonArr) in
                 self.pokemonArray = pokemonArr
-                
                 DispatchQueue.main.async {
                     self.tableview.reloadData()
                 }
@@ -54,6 +58,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             do {
                 try ApiClient.getSpriteImage(urlString: url!, completion: { (spriteImage) in
                     DispatchQueue.main.async {
+                        self.indicator.stopAnimating()
+                        self.indicator.isHidden = true
+                        
                         // check if cell is visible before assigning image
                         if self.tableview.cellForRow(at: indexPath) != nil {
                             cell.pokemonImage.image = spriteImage

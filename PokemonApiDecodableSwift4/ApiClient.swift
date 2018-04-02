@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class ApiClient {
-        
+    
     // MARK:- Api Calls
     class func getPokemonData(urlString: String, completion: @escaping([Pokemon])->()) throws {
 
